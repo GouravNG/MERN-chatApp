@@ -2,6 +2,7 @@ import expres from "express"
 import dotenv from "dotenv"
 
 import authRoute from "./routes/authRoutes.mjs"
+import { MongoConnection } from "./db/connection.mjs"
 
 dotenv.config()
 
@@ -23,4 +24,5 @@ app.use((err, req, res, next) => {
 })
 app.listen(PORT, () => {
     console.log(`Server runnig on PORT ${PORT}...`)
+    MongoConnection()
 })

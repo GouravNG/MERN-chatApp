@@ -1,19 +1,21 @@
-import expres from "express"
+import express from "express"
 import dotenv from "dotenv"
 
 import authRoute from "./routes/authRoutes.mjs"
 import { MongoConnection } from "./db/connection.mjs"
 
+const PORT = process.env.PORT || 3000
+const app = express()
+
 dotenv.config()
 
-const PORT = process.env.PORT || 3000
-const app = expres()
+app.use(express.json())
+app.use("/api/auth", authRoute)
 
 app.get("/", (req, res) => {
     res.send("hello")
 
 })
-app.use("/api/auth", authRoute)
 
 app.use((req, res, next) => {
     res.send("404")

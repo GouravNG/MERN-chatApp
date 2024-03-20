@@ -3,7 +3,7 @@ import { login, logout, signup } from "../controllers/authController.mjs"
 
 const authRoute = express.Router()
 
-authRoute.get("/signup", signup)
-authRoute.get("/login", login)
+authRoute.post("/signup", signup)
+authRoute.post("/login", login)
 authRoute.get("/logout", logout)
 export default authRoute

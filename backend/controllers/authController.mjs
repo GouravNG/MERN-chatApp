@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt"
 import { User } from "../models/userModel.mjs"
 export const signup = async (req, res) => {
     try {
@@ -9,10 +10,12 @@ export const signup = async (req, res) => {
         const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${userName}`
         const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${userName}`
 
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(password, salt)
         const createdUser = new User({
             fullName,
             username: userName,
-            password,
+            password: hashedPassword,
             gender,
             profilePic: gender === "male" ? boyProfilePic : girlProfilePic
         })

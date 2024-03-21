@@ -13,7 +13,7 @@ app.use(express.json())
 app.use("/api/auth", authRoute)
 
 app.get("/", (req, res) => {
-    res.send("hello")
+    res.redirect("/api/auth/signup")
 
 })
 

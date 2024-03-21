@@ -20,10 +20,10 @@ export const signup = async (req, res) => {
             gender,
             profilePic: gender === "male" ? boyProfilePic : girlProfilePic
         })
-        if(createdUser){
+        if (createdUser) {
             const newUserData = await createdUser.save()
-            generateTokenAndSetCookie({userName},res)
-            res.status(200).json(newUserData)
+            generateTokenAndSetCookie({ userName }, res)
+            res.status(201).json(newUserData)
         }
     }
     catch (error) {
@@ -31,8 +31,27 @@ export const signup = async (req, res) => {
         res.status(500).json({ "message": "internal server error" })
     }
 }
-export const login = (req, res) => {
-    res.send("login Page")
+export const login = async (req, res) => {
+    try {
+        const { userName, password } = req.body
+
+        const userFound = await User.findOne({ username: userName })
+        if (!userFound) return res.status(400).json({ error: "Username or password is wrong" })
+
+        const passwordCompare = await bcrypt.compare(password, userFound.password)
+        if (!passwordCompare) return res.status(400).json({ error: "Username or password is wrong" })
+        generateTokenAndSetCookie(userFound._id, res)
+        res.status(200).json({
+            _id:userFound._id,
+            fullName:userFound.fullName,
+            userName:userFound.username,
+            profilePic:userFound.profilePic
+        })
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).send("Something went wrong")
+    }
 }
 export const logout = (req, res) => {
     res.send("logout Page")

@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt"
 import { User } from "../models/userModel.mjs"
+import { generateTokenAndSetCookie } from "../utils/Jwt.mjs"
 export const signup = async (req, res) => {
     try {
         const { fullName, userName, password, confirPassWord, gender } = req.body
@@ -19,8 +20,11 @@ export const signup = async (req, res) => {
             gender,
             profilePic: gender === "male" ? boyProfilePic : girlProfilePic
         })
-        const newUserData = await createdUser.save()
-        res.status(200).json(newUserData)
+        if(createdUser){
+            const newUserData = await createdUser.save()
+            generateTokenAndSetCookie({userName},res)
+            res.status(200).json(newUserData)
+        }
     }
     catch (error) {
         console.log(error)

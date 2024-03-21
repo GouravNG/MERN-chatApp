@@ -2,7 +2,7 @@
   "name": "chatapp_project",
   "version": "1.0.0",
   "description": "chat app with MERN stack",
-  "main": "index.js",
+  "main": "backend/server.mjs",
   "scripts": {
     "dev": "nodemon backend/server.mjs"
   },

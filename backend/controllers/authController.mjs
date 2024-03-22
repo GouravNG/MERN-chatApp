@@ -42,10 +42,10 @@ export const login = async (req, res) => {
         if (!passwordCompare) return res.status(400).json({ error: "Username or password is wrong" })
         generateTokenAndSetCookie(userFound._id, res)
         res.status(200).json({
-            _id:userFound._id,
-            fullName:userFound.fullName,
-            userName:userFound.username,
-            profilePic:userFound.profilePic
+            _id: userFound._id,
+            fullName: userFound.fullName,
+            userName: userFound.username,
+            profilePic: userFound.profilePic
         })
     }
     catch (error) {
@@ -54,5 +54,11 @@ export const login = async (req, res) => {
     }
 }
 export const logout = (req, res) => {
-    res.send("logout Page")
+    try {
+        res.cookie("JWT", "", { maxAge: 0 })
+        res.status(200).json({ message: "Logout successfull" })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Internal server error" })
+    }
 }

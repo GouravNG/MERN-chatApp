@@ -4,6 +4,7 @@ import cookieparser from "cookie-parser"
 
 import authRoute from "./routes/authRoutes.mjs"
 import messageRoute from "./routes/messaagesRoute.mjs"
+import userRoute from "./routes/userRoute.mjs"
 import { MongoConnection } from "./db/connection.mjs"
 
 const PORT = process.env.PORT || 3000
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use(cookieparser())
 app.use("/api/auth", authRoute)
 app.use("/api/message", messageRoute)
+app.use("/api/user", userRoute)
 
 app.get("/", (req, res) => {
     res.redirect("/api/auth/signup")

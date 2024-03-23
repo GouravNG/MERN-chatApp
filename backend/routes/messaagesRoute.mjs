@@ -4,6 +4,6 @@ import { sendMessage } from "../controllers/messagesController.mjs"
 import { protectSend } from "../middlewares/protectsend.mjs"
 const messageRoute=express.Router()
 
-messageRoute.post("/send/:id",protectSend,sendMessage)
+messageRoute.post("/send/:receiverid",protectSend,sendMessage)
 
 export default messageRoute

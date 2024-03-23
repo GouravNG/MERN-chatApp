@@ -14,7 +14,7 @@ export const protectSend = async (req, res, next) => {
         const userFound = await User.findById(decode.userId).select("-password")
         if (!userFound) return res.status(404).json({ error: "User Not found" })
 
-        req.sender=userFound.username
+        req.sender = userFound
         //next
         next()
     } catch (error) {

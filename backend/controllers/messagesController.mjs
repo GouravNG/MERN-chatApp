@@ -34,3 +34,25 @@ export const sendMessage = async (req, res) => {
     }
 
 }
+
+export const getMessage = async (req, res) => {
+    try {
+        //retrive the messages from teh db for th logger in user and chat user
+        //get fileds
+        const userToChat = req.params.id
+        const loggedUser = req.sender._id
+        //send fields 
+        //find their conversation
+        const theirConversation = await Conversation.findOne({
+            participants: { $all: [userToChat, loggedUser] }
+        }).populate("messaages")
+        //find the message and send to them
+        if (!theirConversation) return res.status(200).json([])
+        const theirMessages = theirConversation.messaages
+        res.status(200).json(theirMessages)
+    }
+    catch (error) {
+        console.log("Error in getMessge", error)
+        res.status(500).json({ error: "Internal Server Error" })
+    }
+}

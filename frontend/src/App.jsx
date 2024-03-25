@@ -1,9 +1,10 @@
 import './App.css'
+import { LoginPage } from './pages/loginPage/loginPage'
 
 function App() {
   return (
     <>
-     <h1>Welcome to chat app</h1>
+     <LoginPage/>
     </>
   )
 }

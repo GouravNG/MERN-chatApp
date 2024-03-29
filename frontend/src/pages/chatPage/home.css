@@ -1,0 +1,102 @@
+.home{
+    display: flex;
+    height: 100vh;
+}
+.chats-side-bar{
+    width: 30%;
+    background-color: rgb(130, 238, 236);
+}
+.conversation-view{
+    width: 70%;
+}
+
+.chat-search{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat-search> input{
+    height: 60px;
+    width: 90%;
+}
+
+.chat-lists{
+    height: 90%;
+    overflow-y: auto;
+}   
+
+li{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 2em;
+    background-color: rgb(103, 81, 247);
+    margin: .5rem  0rem ;
+    height: 30px;
+}
+li>img{
+    margin-left: 0.2em
+}
+li>h2{
+    margin-left: 2em;
+}
+
+.top-header{
+    display: flex;
+    align-items:center;
+    justify-content: left;
+    background-color: lightpink;
+    padding: 1rem;
+    height: 8%;
+}
+
+.top-header>img{
+    margin-left: 1rem;
+}
+.top-header>h1{
+    margin-left: 1rem;
+}
+.top-header>button{
+    margin-left: 700px;
+}
+
+.conversations{
+    background-color: rgb(55, 93, 106);
+    display: flex;
+    flex-direction: column;
+    height: 79%;
+    overflow-y: auto;
+}
+.conversations>ul>li{
+    background-color: orange;
+    height: 10px;
+}
+.left{
+    border-radius: 20px 20px 0 ;
+    margin-left: 70%;
+    margin-right: 2%;
+    
+}
+.right{
+    margin-right: 70%;
+    border-radius: 20px 20px 20px 0;
+    margin-left: 2%;
+}
+
+.footBar{
+    background-color: lightsalmon;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 7%;
+}
+.footBar>input{
+    height: 45px;
+    width: 80%;
+}
+.footBar>button{
+    height: 45px;
+    width: 20%;
+}

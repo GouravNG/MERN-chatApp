@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "./signUp.css"
 export const SingUp=()=>{
     return(
@@ -18,7 +19,7 @@ export const SingUp=()=>{
                     </div>
                     <button>SUBMIT</button>
                 </form>
-                <p>Already a user? click here</p>
+                <p>Already a user? <Link to="/login">clickHere</Link></p>
             </div>
            </div>
         </div>

@@ -1,5 +1,4 @@
-import userPic from "../assets/49.png"
-import userData from "../getUser.json"
+import { useGetUsers } from "../hooks/useGetUser.mjs";
 
 const EachChat = ({ values }) => {
     const { _id, fullName, profilePic, gender } = values;
@@ -20,6 +19,7 @@ const EachChat = ({ values }) => {
   };
 
 export const Chatlists=()=>{
+  const userData=useGetUsers()
     return(
     <>
         <div className="chat-search">

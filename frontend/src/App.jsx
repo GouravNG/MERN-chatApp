@@ -13,9 +13,9 @@ function App() {
   <authContext.Provider value={{authUser,setAuthuser}}>
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={authUser?<Home/>:<Navigate to="/signup"/>}/>
+          <Route path="/" element={authUser?<Home/>:<Navigate to="/login"/>}/>
           <Route path="/signup" element={authUser?<Navigate to="/"/>:<SingUp/>} />
-          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/login" element={authUser?<Navigate to="/" />: <LoginPage/>}/>
           <Route path="*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>

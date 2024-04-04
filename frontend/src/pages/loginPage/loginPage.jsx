@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom"
 import "./loginPage.css"
 import { useState } from "react"
+import { useLogin } from "../../hooks/useLogin.mjs"
 export const LoginPage=()=>{
     const [inputs,setInputs]=useState({
         username:"",
         password:""
     })
+    const { loading, login } = useLogin()
     const handleSubmit=(e)=>{
         e.preventDefault()
-        console.log("consoling",inputs)
+        login(inputs)
     }
     return(
         <div className="pageBody">

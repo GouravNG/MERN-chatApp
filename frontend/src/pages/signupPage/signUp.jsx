@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import "./signUp.css"
 import { useState } from "react"
 import { useSignup } from "../../hooks/signUpchecker.mjs"
+import { Loading } from "../../components/loading"
 export const SingUp=()=>{
     const [input, setInput]=useState({
         fullName:"",
@@ -10,7 +11,7 @@ export const SingUp=()=>{
         confirPassWord:"",
         gender:""
     })
-    const {loadingState,signupCheck}=useSignup()
+    const {loading,signupCheck}=useSignup()
 
     const handleSubmit=async (e)=>{
         e.preventDefault()
@@ -19,6 +20,7 @@ export const SingUp=()=>{
     }
     return(
         <div className="pageBody">
+            {loading&&<Loading/>}
            <div className="loginBlock">
             <div className="loginHeading"><h1>Sign Up</h1></div>
             <div className="formDiv">

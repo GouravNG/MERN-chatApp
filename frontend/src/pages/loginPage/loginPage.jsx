@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import "./loginPage.css"
 import { useState } from "react"
 import { useLogin } from "../../hooks/useLogin.mjs"
+import { Loading } from "../../components/loading"
 export const LoginPage=()=>{
     const [inputs,setInputs]=useState({
         username:"",
@@ -14,6 +15,7 @@ export const LoginPage=()=>{
     }
     return(
         <div className="pageBody">
+            {loading&&<Loading/>}
            <div className="loginBlock">
             <div className="loginHeading"><h1>Login</h1></div>
             <div className="formDiv">

@@ -1,11 +1,13 @@
 import reciever from "../assets/49.png"
+import { useLogout } from "../hooks/userLogout.mjs"
 export const Messages=()=>{
+    const {loading,logout}=useLogout()
     return(
         <>
         <div className="top-header">
             <img src={reciever}   alt="chat user "  width="70px"/>
             <h1>Reciever Name</h1>
-            <button>Logout</button>
+            <button onClick={()=>{logout()}}>Logout</button>
         </div>
         <div  className="conversations">
             <ul>

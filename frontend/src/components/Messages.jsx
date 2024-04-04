@@ -1,5 +1,16 @@
 import reciever from "../assets/49.png"
 import { useLogout } from "../hooks/userLogout.mjs"
+import dummyData from "../getConversation.json"
+
+const EachConversation=({values})=>{
+    const {message,receiverId}=values
+    return(
+        <>
+            <li className={receiverId!=="65fdaf4b2c2245a3b9a9b78c"?"left":"right"}>{message}</li> {/*hard coded for now*/}
+        </>
+    )
+}
+
 export const Messages=()=>{
     const {loading,logout}=useLogout()
     return(
@@ -11,20 +22,11 @@ export const Messages=()=>{
         </div>
         <div  className="conversations">
             <ul>
-                <li className="left">test</li>
-                <li className="right">test</li>
-                <li className="left">test</li>
-                <li className="left">test</li>
-                <li className="right">test</li>
-                <li className="left">test</li>
-                <li className="left">test</li>
-                <li className="left">test</li>
-                <li className="right">test</li>
-                <li className="left">test</li>
-                <li className="left">test</li>
-                <li className="left">test</li>
-                <li className="right">test</li>
-                <li className="left">test</li>
+                {
+                    dummyData.map((i)=>{
+                        return <EachConversation key={i._id} values={i}/>
+                    })
+                }
             </ul>
         </div>
         <div className="footBar">

@@ -3,11 +3,12 @@ import { useGetUsers } from "../hooks/useGetUser.mjs";
 import { Userselected } from "../context/selectedUserContext";
 
 const EachChat = ({ values }) => {
-    const {setUserSelectedId,setUserSelected}=useContext(Userselected)
+    const {setUserSelectedId,setUserSelected,setProfileURL}=useContext(Userselected)
     const { _id, fullName, profilePic, gender } = values;
     const handleClick = (e) => {
       setUserSelectedId(e.currentTarget.getAttribute('userid'))
       setUserSelected(e.target.innerText)
+      setProfileURL(profilePic)
     };
   
     return (

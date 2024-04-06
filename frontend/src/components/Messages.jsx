@@ -1,21 +1,30 @@
 // import reciever from "../assets/49.png"
 import { useLogout } from "../hooks/userLogout.mjs"
 // import dummyData from "../getConversation.json"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Userselected } from "../context/selectedUserContext"
+import { useGetConversations } from "../hooks/useGetConversation.mjs"
+import { authContext } from "../context/authContext.mjs"
 
 const EachConversation=({values})=>{
     const {message,receiverId}=values
+    const {authUser}=useContext(authContext)
     return(
         <>
-            <li className={receiverId!=="65fdaf4b2c2245a3b9a9b78c"?"left":"right"}>{message}</li> {/*hard coded for now*/}
+            <li className={receiverId!==authUser._id?"left":"right"}>{message}</li> 
+            {console.log(authUser,receiverId)}
         </>
     )
 }
 
 export const Messages=()=>{
     const {loading,logout}=useLogout()
-    const {userSelectedId,userSelected,profileURL}=useContext(Userselected)
+    const {userSelectedId,userSelected,profileURL,conversationArray}=useContext(Userselected)
+    const getConversation=useGetConversations()
+    useEffect(()=>{
+        getConversation()
+        // console.log(conversationArray)
+    },[userSelected])
     return(
         userSelected&&userSelectedId?
         <>
@@ -27,9 +36,9 @@ export const Messages=()=>{
         <div  className="conversations">
             <ul>
                 {
-                    // dummyData.map((i)=>{
-                    //     return <EachConversation key={i._id} values={i}/>
-                    // })
+                    conversationArray.map((i)=>{
+                        return <EachConversation key={i._id} values={i}/>
+                    })
                 }
             </ul>
         </div>

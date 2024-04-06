@@ -18,7 +18,7 @@ export const useLogin = () => {
             const data = await res.json()
             if (data.error) throw new Error(data.error)
             localStorage.setItem("logged-user", JSON.stringify(data))
-            setAuthuser(true)
+            setAuthuser(data._id)
         }
         catch (error) {
             console.error(error.message)

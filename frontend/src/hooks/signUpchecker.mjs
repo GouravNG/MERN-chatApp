@@ -3,7 +3,7 @@ import { authContext } from "../context/authContext.mjs"
 
 export const useSignup = () => {
     const [loading, setLoading] = useState(false)
-    const {setAuthuser}=useContext(authContext)
+    const { setAuthuser } = useContext(authContext)
 
     const signupCheck = async ({ fullName, userName, password, confirPassWord, gender }) => {
         const clientCheckSuccess = clientSideValidations({ fullName, userName, password, confirPassWord, gender })
@@ -21,7 +21,7 @@ export const useSignup = () => {
                 throw new Error(data.error)
             }
             localStorage.setItem("logged-user", JSON.stringify(data))
-            setAuthuser(true)
+            setAuthuser(data._id)
         }
         catch (err) {
             console.error(err.message)

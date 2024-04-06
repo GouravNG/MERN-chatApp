@@ -1,6 +1,6 @@
-import reciever from "../assets/49.png"
+// import reciever from "../assets/49.png"
 import { useLogout } from "../hooks/userLogout.mjs"
-import dummyData from "../getConversation.json"
+// import dummyData from "../getConversation.json"
 import { useContext } from "react"
 import { Userselected } from "../context/selectedUserContext"
 
@@ -15,21 +15,21 @@ const EachConversation=({values})=>{
 
 export const Messages=()=>{
     const {loading,logout}=useLogout()
-    const {userSelectedId,userSelected}=useContext(Userselected)
+    const {userSelectedId,userSelected,profileURL}=useContext(Userselected)
     return(
         userSelected&&userSelectedId?
         <>
         <div className="top-header">
-            <img src={reciever}   alt="chat user "  width="70px"/>
-            <h1>Reciever Name</h1>
+            <img src={profileURL}   alt="chat user "  width="70px"/>
+            <h1>{userSelected}</h1>
             <button onClick={()=>{logout()}}>Logout</button>
         </div>
         <div  className="conversations">
             <ul>
                 {
-                    dummyData.map((i)=>{
-                        return <EachConversation key={i._id} values={i}/>
-                    })
+                    // dummyData.map((i)=>{
+                    //     return <EachConversation key={i._id} values={i}/>
+                    // })
                 }
             </ul>
         </div>

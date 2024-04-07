@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react"
 import { Userselected } from "../context/selectedUserContext"
 import { useGetConversations } from "../hooks/useGetConversation.mjs"
 import { authContext } from "../context/authContext.mjs"
+import { useSendMessage } from "../hooks/useSendMessage.mjs"
 
 const EachConversation=({values})=>{
     const {message,receiverId}=values
@@ -12,19 +13,23 @@ const EachConversation=({values})=>{
     return(
         <>
             <li className={receiverId!==authUser._id?"left":"right"}>{message}</li> 
-            {console.log(authUser,receiverId)}
+            {console.log("logged user",authUser._id,"sender",receiverId)}
         </>
     )
 }
 
 export const Messages=()=>{
     const {loading,logout}=useLogout()
-    const {userSelectedId,userSelected,profileURL,conversationArray}=useContext(Userselected)
+    const {userSelectedId,userSelected,profileURL,conversationArray,message,setMessage}=useContext(Userselected)
     const getConversation=useGetConversations()
+    const sendMessage=useSendMessage()
     useEffect(()=>{
+        console.log(conversationArray)
         getConversation()
-        // console.log(conversationArray)
-    },[userSelected])
+    },[userSelected,setMessage])
+    const handleMessageSend=(e)=>{
+        sendMessage(message,userSelectedId)
+    }
     return(
         userSelected&&userSelectedId?
         <>
@@ -43,8 +48,8 @@ export const Messages=()=>{
             </ul>
         </div>
         <div className="footBar">
-            <input type="text" placeholder="Enter your message"/>
-            <button>Send</button>
+            <input type="text" placeholder="Enter your message" onChange={(e)=>setMessage(e.target.value)}/>
+            <button onClick={()=>{handleMessageSend()}}>Send</button>
         </div>
         </>:
         <h1>Click to begin the conversation</h1>

@@ -13,22 +13,22 @@ const EachConversation=({values})=>{
     return(
         <>
             <li className={receiverId!==authUser._id?"left":"right"}>{message}</li> 
-            {console.log("logged user",authUser._id,"sender",receiverId)}
+            {console.log("logged user",authUser._id,"receiver user id",receiverId)}
         </>
     )
 }
 
 export const Messages=()=>{
-    const {loading,logout}=useLogout()
+    const {logout}=useLogout()
     const {userSelectedId,userSelected,profileURL,conversationArray,message,setMessage}=useContext(Userselected)
     const getConversation=useGetConversations()
     const sendMessage=useSendMessage()
     useEffect(()=>{
         console.log(conversationArray)
         getConversation()
-    },[userSelected,setMessage])
+    },[userSelected,message])
     const handleMessageSend=(e)=>{
-        sendMessage(message,userSelectedId)
+        sendMessage(message,userSelectedId,setMessage)
     }
     return(
         userSelected&&userSelectedId?

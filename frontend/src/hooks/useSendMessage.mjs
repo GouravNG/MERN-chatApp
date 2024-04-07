@@ -1,5 +1,5 @@
 export const useSendMessage = () => {
-    const sendMessage = async (messageTobeSend,id) => {
+    const sendMessage = async (messageTobeSend,id,setMessage) => {
         try {
             console.log(messageTobeSend)
             const data = await fetch(`/api/message/send/${id}`, {
@@ -9,7 +9,7 @@ export const useSendMessage = () => {
             })
             const newData = await data.json()
             if (newData.error) throw new Error(newData.error)
-            console.log(newData)
+            setMessage("")
         }
         catch (err) {
             console.error(err.message)

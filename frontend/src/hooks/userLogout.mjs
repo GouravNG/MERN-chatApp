@@ -22,7 +22,7 @@ export const useLogout= ()=>{
             console.log(error.message)
         }
         finally{
-            setLoading(false)
+            setLoading(null)
         }
     }
     return {loading,logout}

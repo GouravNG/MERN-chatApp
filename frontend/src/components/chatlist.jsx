@@ -6,17 +6,18 @@ const EachChat = ({ values }) => {
     const {setUserSelectedId,setUserSelected,setProfileURL}=useContext(Userselected)
     const { _id, fullName, profilePic, gender } = values;
     const handleClick = (e) => {
-      setUserSelectedId(e.currentTarget.getAttribute('userid'))
-      setUserSelected(e.target.innerText)
+      setUserSelectedId(_id)
+      setUserSelected(fullName)
       setProfileURL(profilePic)
     };
   
     return (
       <>
-        <li userid={_id} onClick={handleClick}>
+        <li onClick={handleClick}>
           <img src={profilePic} alt={`${gender}`} width="60px" />
           <h2>{fullName}</h2>
         </li>
+        {console.log(`U clicked on the user ${fullName} and his id is ${_id}`)}
       </>
     );
   };

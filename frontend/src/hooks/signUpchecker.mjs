@@ -16,7 +16,7 @@ export const useSignup = () => {
                 body: JSON.stringify({ fullName, userName, password, confirPassWord, gender })
             })
             const data = await res.json()
-            console.log(data)
+            // console.log(data)
             if (data.error) {
                 throw new Error(data.error)
             }
